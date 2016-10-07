@@ -1,6 +1,6 @@
 /**
- *
- * @author nick_
+ * CS1635 Deliverable 2
+ * @author Nick Taglianetti
  */
 public class Driver {
     private int id;
@@ -16,16 +16,26 @@ public class Driver {
     
     public int getID()
     {
-        return id;
+        return this.id;
     }
     
     public String getLocation()
     {
-        return currentLocation;
+        return this.currentLocation;
     }
     
     public int getNumCups()
     {
-        return cupsCoffee;
+        return this.cupsCoffee;
+    }
+    
+    public void drinkCoffee()
+    {
+        this.cupsCoffee++;
+    }
+    
+    public void updateLocation(String new_location)
+    {
+        this.currentLocation = new_location;
     }
 }
