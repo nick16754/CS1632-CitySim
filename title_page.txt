@@ -1,5 +1,0 @@
-Name: Nicholas Taglianetti
-
-URL: https://github.com/nick16754/CS1632-Deliverable2.git
-
-CS 1632 - DELIVERABLE 2: Unit Testing CitySim9003
