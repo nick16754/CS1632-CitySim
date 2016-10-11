@@ -11,16 +11,11 @@ import java.util.logging.Logger;
 public class Simulator {
 
     public Driver[] Drivers;
+    private INumberGenerator numberGenerator;
 
-    private final Random random;
-
-    public Simulator(int seed) {
-        if ((seed < 0)) {
-            throw new IllegalArgumentException("seed much be positive");
-        }
-
+    public Simulator(INumberGenerator numberGenerator) {
         //  set seed to randomize route decisions
-        this.random = new Random(seed);
+        this.numberGenerator = numberGenerator;
         //  initialize drivers
         this.Drivers = new Driver[5];
         for (int index = 0; (index < this.Drivers.length); index++) {
@@ -133,7 +128,7 @@ public class Simulator {
 
     //  get a random location
     private Driver.Location GetRandomLocation() {
-        int rndLoc = random.nextInt(Driver.Location.values().length);
+        int rndLoc = numberGenerator.nextInt(Driver.Location.values().length);
         return Driver.Location.values()[rndLoc];
     }
 

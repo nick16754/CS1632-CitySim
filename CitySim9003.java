@@ -18,8 +18,13 @@ public class CitySim9003 {
                 System.exit(1);
             }
 
-            //  instantiate Simulator
-            Simulator simulator = new Simulator(seed);
+            // instantiate INumberGenerator with the 
+            INumberGenerator numberGenerator = new RandomGenerator(seed);
+            
+            // inject the random generator into Simulator
+            // so that we can mock the random generator 
+            // in our tests.
+            Simulator simulator = new Simulator(numberGenerator); 
             //  run simulation
             simulator.RunSimulation();
             

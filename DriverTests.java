@@ -11,7 +11,7 @@ import static org.junit.Assert.*;
 public class DriverTests {
 
     // A valid Driver should be created based on its driverId and locationId
-    // Instanciate new Driver and set its attributes.
+    // Instantiate new Driver and set its attributes.
     // Driver's attributes' values should be equal to those of the variables.
     @Test()
     public final void DriverIsValidAfterConstruction() {
@@ -25,7 +25,7 @@ public class DriverTests {
     }
 
     // DrinkCoffee should increase the CupsCoffee of the Driver.
-    // Instanciate new Driver with location Coffee and call DrinkCoffee twice.
+    // Instantiate new Driver with location Coffee and call DrinkCoffee twice.
     // CupsCoffee of Driver should increase by one each time DrinkCoffee is called.
     @Test()
     public final void DriverCupsCoffeeIncrementsOnDrink() {
@@ -42,7 +42,7 @@ public class DriverTests {
     }
 
     // UpdateLocation should change the location of the Driver.
-    // Instanciate new Driver with intial location and update to new location.
+    // Instantiate new Driver with intial location and update to new location.
     // Driver's location should change to newLocation.
     @Test()
     public final void DriverLocationCanBeChanged() {
@@ -56,7 +56,7 @@ public class DriverTests {
     }
 
     // UpdateLocation should change the location of the driver to a different location.
-    // Instanciate new Driver with intial location and update to same initial location.
+    // Instantiate new Driver with intial location and update to same initial location.
     // Not updating to a different location should throw exception.
     @Test(expected = IllegalArgumentException.class)
     public final void DriverLocationChangeMustBeDifferent() {
@@ -69,7 +69,7 @@ public class DriverTests {
     }
 
     // UpdateLocation to Coffee should result in incrementation of CupsCoffee
-    // Instanciate new Driver with intial location and update to Coffee.
+    // Instantiate new Driver with intial location and update to Coffee.
     // Driver's CupsCoffee should update to 1.
     @Test()
     public final void DrinkCoffeeIfLocationUpdatedToCoffee() {
@@ -85,7 +85,7 @@ public class DriverTests {
     }
 
     // IsInsideCity should only return true if Driver's location is not OutsideCity.
-    // Instanciate a new Driver and set its location to OutsideCity.
+    // Instantiate a new Driver and set its location to OutsideCity.
     // Call of IsInsideCity should return false. 
     @Test()
     public final void IsNotInsideTheCityWhenLocationIsOutsideCity() {
@@ -98,7 +98,7 @@ public class DriverTests {
     }
 
     // IsInsideCity should return true if Driver's location is any location but OutsideCity.
-    // Instanciate a new Driver and set its location to Hotel.
+    // Instantiate a new Driver and set its location to Hotel.
     // Call of IsInsideCity should return true. 
     @Test()
     public final void IsInsideCityWhenLocationIsHotel() {
@@ -111,7 +111,7 @@ public class DriverTests {
     }
 
     // IsInsideCity should return true if Driver's location is any location but OutsideCity.
-    // Instanciate a new Driver and set its location to Library.
+    // Instantiate a new Driver and set its location to Library.
     // Call of IsInsideCity should return true. 
     @Test()
     public final void IsInsideCityWhenLocationIsLibrary() {
@@ -124,7 +124,7 @@ public class DriverTests {
     }
 
     // IsInsideCity should return true if Driver's location is any location but OutsideCity.
-    // Instanciate a new Driver and set its location to Coffee.
+    // Instantiate a new Driver and set its location to Coffee.
     // Call of IsInsideCity should return true. 
     @Test()
     public final void IsInsideCityWhenLocationIsCoffee() {
@@ -137,7 +137,7 @@ public class DriverTests {
     }
 
     // IsInsideCity should return true if Driver's location is any location but OutsideCity.
-    // Instanciate a new Driver and set its location to Diner.
+    // Instantiate a new Driver and set its location to Diner.
     // Call of IsInsideCity should return true. 
     @Test()
     public final void IsInsideCityWhenLocationIsDiner() {
@@ -150,7 +150,7 @@ public class DriverTests {
     }
 
     // UpdateCity should be able to update a Driver's city iff location is OutsideCity.
-    // Instanciate a new Driver and set its location to OutsideCity.
+    // Instantiate a new Driver and set its location to OutsideCity.
     // Call UpdateCity on the Driver to change its city to Cleveland.
     // Driver's CurrentLocation should be OutsideCity.
     // Driver's CurrentCity should be Cleveland. 
@@ -168,7 +168,7 @@ public class DriverTests {
     }
 
     // UpdateCity should be able to update a Driver's city iff location is OutsideCity.
-    // Instanciate a new Driver and set its location to Coffee.
+    // Instantiate a new Driver and set its location to Coffee.
     // Call UpdateCity on the Driver to change its city to Cleveland.
     // Driver's CurrentLocation is not OutsideCity so arguement should be thrown.
     @Test(expected = IllegalArgumentException.class)
