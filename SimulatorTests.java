@@ -64,7 +64,7 @@ public class SimulatorTests {
     // Parameter should be excluded from random locations generated. 
     @Test()
     public final void GetRandomLocationElsewhereReturnsDifferentLocation() {
-        Simulator simulator = new Simulator(5);
+        Simulator simulator = new Simulator(generator);
         Driver.Location location1 = simulator.GetRandomLocationElsewhere(Driver.Location.Coffee);
         assertNotEquals(location1, Driver.Location.Coffee);
         Driver.Location location2 = simulator.GetRandomLocationElsewhere(Driver.Location.Diner);
