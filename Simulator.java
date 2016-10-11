@@ -14,14 +14,9 @@ public class Simulator {
 
     private final Random random;
 
-
     public Simulator(int seed) {
         if ((seed < 0)) {
-            try {
-                throw new IllegalArgumentException("seed much be positive");
-            } catch (Exception ex) {
-                Logger.getLogger(Simulator.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            throw new IllegalArgumentException("seed much be positive");
         }
 
         //  set seed to randomize route decisions
@@ -30,8 +25,7 @@ public class Simulator {
         this.Drivers = new Driver[5];
         for (int index = 0; (index < this.Drivers.length); index++) {
             this.Drivers[index] = new Driver((index + 1), this.GetRandomLocationInCity());
-            if(this.Drivers[index].getCurrentLocation() == Driver.Location.Coffee)
-            {
+            if (this.Drivers[index].getCurrentLocation() == Driver.Location.Coffee) {
                 this.Drivers[index].DrinkCoffee();
             }
         }
@@ -45,11 +39,7 @@ public class Simulator {
             int id = (index + 1);
             int counter = 0;
             while (this.Drivers[index].IsInsideCity()) {
-                try {
-                    this.SimulateMove(id);
-                } catch (Exception ex) {
-                    Logger.getLogger(Simulator.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                this.SimulateMove(id);
                 counter++;
             }
 
@@ -59,7 +49,7 @@ public class Simulator {
     }
 
     //  simululate a driver moving his location
-    public void SimulateMove(int driverId) throws Exception {
+    public void SimulateMove(int driverId) {
         if (((driverId < 1) || (driverId > 5))) {
             throw new IllegalArgumentException("invalid driver id -- must be between 1 and 5");
         }
@@ -89,7 +79,7 @@ public class Simulator {
     }
 
     //  checks if new location is valid
-    public boolean IsLocationValid(Driver.Location currentLocation, Driver.Location newLocation) throws Exception {
+    public boolean IsLocationValid(Driver.Location currentLocation, Driver.Location newLocation) {
         if ((currentLocation == Driver.Location.Hotel)) {
             return ((newLocation == Driver.Location.Diner) || (newLocation == Driver.Location.Library));
         }
@@ -114,7 +104,7 @@ public class Simulator {
     }
 
     //  get a random location that's not the current location
-    public Driver.Location GetRandomLocationElsewhere(Driver.Location currentLocation) throws Exception {
+    public Driver.Location GetRandomLocationElsewhere(Driver.Location currentLocation) {
         if ((currentLocation == Driver.Location.OutsideCity)) {
             throw new IllegalArgumentException("current location OutsideCity not supported");
         }
@@ -148,7 +138,7 @@ public class Simulator {
     }
 
     //  returns name of street traveled between current and new locations
-    private  String GetStreetTraveled(Driver.Location currentLocation, Driver.Location newLocation) throws Exception {
+    private String GetStreetTraveled(Driver.Location currentLocation, Driver.Location newLocation) {
         if (((currentLocation == Driver.Location.Hotel) && (newLocation == Driver.Location.Diner))) {
             return "Fourth Ave.";
         }
@@ -181,7 +171,6 @@ public class Simulator {
             return "Fifth Ave.";
         }
 
-        throw new Exception("invalid location change");
+        throw new IllegalArgumentException("invalid location change");
     }
 }
-

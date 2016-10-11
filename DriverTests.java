@@ -5,8 +5,6 @@
  * @author Nick Taglianetti
  */
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -53,19 +51,14 @@ public class DriverTests {
         Driver.Location initialLocation = Driver.Location.Hotel;
         Driver.Location newLocation = Driver.Location.Diner;
         Driver driver = new Driver(driverId, initialLocation);
-        try {
-            //  action
-            driver.UpdateLocation(newLocation);
-        } catch (Exception ex) {
-            
-        }
+        //  action
+        driver.UpdateLocation(newLocation);
     }
 
     // UpdateLocation should change the location of the driver to a different location.
     // Instanciate new Driver with intial location and update to same initial location.
     // Not updating to a different location should throw exception.
-    @ExpectedException(typeof(ArgumentException))
-    @Test()
+    @Test(expected = IllegalArgumentException.class)
     public final void DriverLocationChangeMustBeDifferent() {
         //  assign
         int driverId = 1;
@@ -178,8 +171,7 @@ public class DriverTests {
     // Instanciate a new Driver and set its location to Coffee.
     // Call UpdateCity on the Driver to change its city to Cleveland.
     // Driver's CurrentLocation is not OutsideCity so arguement should be thrown.
-    @Test()
-    @ExpectedException(typeof(ArgumentException))
+    @Test(expected = IllegalArgumentException.class)
     public final void CanNotUpdateCityWhenLocationIsInsideCity() {
         //  assign
         int driverId = 1;

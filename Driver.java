@@ -71,7 +71,7 @@ public class Driver {
     }
 
     //  updates location, checking to make sure that it has changed
-    public final void UpdateLocation(Location newLocation) throws Exception {
+    public final void UpdateLocation(Location newLocation) {
         if ((newLocation == this.CurrentLocation)) {
             throw new IllegalArgumentException("newLocation must be different from current location");
         }
@@ -85,7 +85,7 @@ public class Driver {
     }
 
     //  update city if location is outside city
-    public final void UpdateCity(City newCity) throws Exception {
+    public final void UpdateCity(City newCity) {
         if ((this.CurrentLocation != Location.OutsideCity)) {
             throw new IllegalArgumentException("location must be OutsideCity to update city");
         }

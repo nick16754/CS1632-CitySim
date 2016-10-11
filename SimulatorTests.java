@@ -37,8 +37,7 @@ public class SimulatorTests {
         // Simulator must have a positive seed.
         // Create instance of Simulator with negative seed.
         // Instaciating Simulator with negative seed should throw exception.
-        @Test()
-        @ExpectedException(typeof(ArgumentException))
+        @Test(expected = IllegalArgumentException.class)
         public final void SimulatorMustHavePositiveSeed() {
             Simulator simulator = new Simulator(-5);
         }
@@ -57,8 +56,7 @@ public class SimulatorTests {
         // Simulator cannot move a Driver that doesn't exit.
         // Create instance of Simulator. Call SimulateMove on Driver 6.
         // Simulating a move of a DriverId > 5 should throw exception.
-        @Test()
-        @ExpectedException(typeof(ArgumentException))
+        @Test(expected = IllegalArgumentException.class)
         public final void SimulateMoveMustTakeValidDriverId() {
             //  assign
             Simulator simulator = new Simulator(5);
@@ -85,8 +83,7 @@ public class SimulatorTests {
         // GetRandomLocation cannot be called on a Driver whose currentLocation is OutsideCity.
         // Instanciate Simulator and call GetRandomLocationElsewhere with a parameter of OutsideCity.
         // Getting a random location elsewhere if already OutsideCity should throw exception.
-        @Test()
-        @ExpectedException(typeof(ArgumentException))
+        @Test(expected = IllegalArgumentException.class)
         public final void GetRandomLocationElsewhereFailsFromOutsideCity() {
             Simulator simulator = new Simulator(5);
             simulator.GetRandomLocationElsewhere(Driver.Location.OutsideCity);
