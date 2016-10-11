@@ -20,7 +20,7 @@ public class Simulator {
             try {
                 throw new IllegalArgumentException("seed much be positive");
             } catch (Exception ex) {
-                
+                Logger.getLogger(Simulator.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
 
@@ -30,6 +30,10 @@ public class Simulator {
         this.Drivers = new Driver[5];
         for (int index = 0; (index < this.Drivers.length); index++) {
             this.Drivers[index] = new Driver((index + 1), this.GetRandomLocationInCity());
+            if(this.Drivers[index].getCurrentLocation() == Driver.Location.Coffee)
+            {
+                this.Drivers[index].DrinkCoffee();
+            }
         }
 
     }
