@@ -1,41 +1,97 @@
 /**
  * CS1635 Deliverable 2
+ *
  * @author Nick Taglianetti
  */
+
 public class Driver {
-    private int id;
-    private String currentLocation;
-    private int cupsCoffee;
-    
-    public Driver (int id, String loc, int coffee)
+
+    //  Enum to identify all valid locations
+    //  Enum is 0-based so that random logic works
+    //  Length of this enum is 5
+
+    public enum Location 
     {
-        this.id = id;
-        this.currentLocation = loc;
-        this.cupsCoffee = coffee;
+        Hotel,
+        Diner,
+        Library,
+        Coffee,
+        OutsideCity;
+    }
+
+    //  Enum to identify all external cities
+    public enum City {
+
+        Cleveland,
+        Philadelphia,
     }
     
-    public int getID()
-    {
-        return this.id;
+    public int Id;
+    public int CupsCoffee;
+    public Location CurrentLocation;
+    public City CurrentCity;
+
+    //  no default constructor
+    private Driver() {
+
+    }
+
+    //  constructor must include ID and location
+    public Driver(int id, Location location) {
+        this.Id = id;
+        this.CurrentLocation = location;
+        this.CupsCoffee = 0;
+        this.CurrentCity = null;
+    }
+
+    public int getID() {
+        return this.Id;
+    }
+
+    public int getCupsCoffee() {
+        return this.CupsCoffee;
+    }
+
+    public Location getCurrentLocation() {
+        return this.CurrentLocation;
+    }
+
+    public City getCurrentCity() {
+        return this.CurrentCity;
     }
     
-    public String getLocation()
-    {
-        return this.currentLocation;
+    //  method for drinking coffee
+    public final void DrinkCoffee() {
+        this.CupsCoffee++;
     }
-    
-    public int getNumCups()
-    {
-        return this.cupsCoffee;
+
+    //  returns true if current location is not OutsideCity
+    public final boolean IsInsideCity() {
+        return (this.CurrentLocation != Location.OutsideCity);
     }
-    
-    public void drinkCoffee()
-    {
-        this.cupsCoffee++;
+
+    //  updates location, checking to make sure that it has changed
+    public final void UpdateLocation(Location newLocation) throws Exception {
+        if ((newLocation == this.CurrentLocation)) {
+            throw new Exception("newLocation must be different from current location");
+        }
+
+        this.CurrentLocation = newLocation;
+        //  Make sure we have a cup of coffee
+        if ((newLocation == Location.Coffee)) {
+            this.DrinkCoffee();
+        }
+
     }
-    
-    public void updateLocation(String new_location)
-    {
-        this.currentLocation = new_location;
+
+    //  update city if location is outside city
+    public final void UpdateCity(City newCity) throws Exception {
+        if ((this.CurrentLocation != Location.OutsideCity)) {
+            throw new Exception("location must be OutsideCity to update city");
+        }
+
+        this.CurrentCity = newCity;
     }
+
 }
+
