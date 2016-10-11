@@ -1,8 +1,4 @@
-/**
- * CS1635 Deliverable 2
- *
- * @author Nick Taglianetti
- */
+
 import java.util.ArrayList;
 
 import org.junit.runner.*;
@@ -17,7 +13,7 @@ public class TestRunner {
 	// ADD ANY MORE CLASSES YOU WISH TO TEST HERE
 	
 	classesToTest.add(DriverTests.class);
-	classesToTest.add(CitySimTest.class);
+	classesToTest.add(SimulatorTests.class);
 	
 	// For all test classes added, loop through and use JUnit
 	// to run them.

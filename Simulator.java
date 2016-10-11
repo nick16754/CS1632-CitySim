@@ -18,7 +18,7 @@ public class Simulator {
     public Simulator(int seed) {
         if ((seed < 0)) {
             try {
-                throw new Exception("seed much be positive");
+                throw new IllegalArgumentException("seed much be positive");
             } catch (Exception ex) {
                 
             }
@@ -57,7 +57,7 @@ public class Simulator {
     //  simululate a driver moving his location
     public void SimulateMove(int driverId) throws Exception {
         if (((driverId < 1) || (driverId > 5))) {
-            throw new Exception("invalid driver id -- must be between 1 and 5");
+            throw new IllegalArgumentException("invalid driver id -- must be between 1 and 5");
         }
 
         int index = (driverId - 1);
@@ -106,13 +106,13 @@ public class Simulator {
             return false;
         }
 
-        throw new Exception(String.format("currentLocation %s not supported", currentLocation));
+        throw new IllegalArgumentException(String.format("currentLocation %s not supported", currentLocation));
     }
 
     //  get a random location that's not the current location
     public Driver.Location GetRandomLocationElsewhere(Driver.Location currentLocation) throws Exception {
         if ((currentLocation == Driver.Location.OutsideCity)) {
-            throw new Exception("current location OutsideCity not supported");
+            throw new IllegalArgumentException("current location OutsideCity not supported");
         }
 
         while (true) {
