@@ -12,7 +12,7 @@ public class Simulator {
 
     public Driver[] Drivers;
 
-    private Random random;
+    private final Random random;
 
 
     public Simulator(int seed) {
@@ -79,7 +79,7 @@ public class Simulator {
             }
 
             this.Drivers[index].UpdateCity(newCity);
-            System.out.printf("Driver {0} has gone to {1}!\n", driverId, newCity);
+            System.out.printf("Driver %d has gone to %s!\n", driverId, newCity);
         }
 
     }
@@ -106,7 +106,7 @@ public class Simulator {
             return false;
         }
 
-        throw new Exception(String.format("currentLocation {0} not supported", currentLocation));
+        throw new Exception(String.format("currentLocation %s not supported", currentLocation));
     }
 
     //  get a random location that's not the current location
