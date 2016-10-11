@@ -15,7 +15,7 @@ public class SimulatorTests {
     // Create new instance of Simulator with some seed.
     // Instance of Simulator should have a Drivers array of length 5.
     @Test()
-    public final void SimulatorCreatesFiveDrivers() {
+    public void SimulatorCreatesFiveDrivers() {
         // Assign
         Simulator simulator = new Simulator(generator);
         // Assert
@@ -26,7 +26,7 @@ public class SimulatorTests {
     // Create new instance of Simulator with some seed.
     // Each Driver in Drivers should have the correct ID cooresponding to its index.
     @Test()
-    public final void SimulatorDriverIdIsArrayIndex() {
+    public void SimulatorDriverIdIsArrayIndex() {
         // Assign
         Simulator simulator = new Simulator(generator);
         // Assert
@@ -41,7 +41,7 @@ public class SimulatorTests {
     // Create instance of Simulator with some seed. Call SimulateMove on Driver 4.
     // Simulating a move of a DriverId <= 5 should result in the movement of that Driver.
     @Test()
-    public final void SimulateMoveValidDriveId() {
+    public void SimulateMoveValidDriveId() {
         //  assign
         Simulator simulator = new Simulator(generator);
         //  action
@@ -52,7 +52,7 @@ public class SimulatorTests {
     // Create instance of Simulator. Call SimulateMove on Driver 6.
     // Simulating a move of a DriverId > 5 should throw exception.
     @Test(expected = IllegalArgumentException.class)
-    public final void SimulateMoveMustTakeValidDriverId() {
+    public void SimulateMoveMustTakeValidDriverId() {
         //  assign
         Simulator simulator = new Simulator(generator);
         //  action
@@ -63,7 +63,7 @@ public class SimulatorTests {
     // Create instance of Simulator and call GetRandomLocationElsewhere on each possible Location.
     // Parameter should be excluded from random locations generated. 
     @Test()
-    public final void GetRandomLocationElsewhereReturnsDifferentLocation() {
+    public void GetRandomLocationElsewhereReturnsDifferentLocation() {
         Simulator simulator = new Simulator(generator);
         Driver.Location location1 = simulator.GetRandomLocationElsewhere(Driver.Location.Coffee);
         assertNotEquals(location1, Driver.Location.Coffee);
@@ -79,7 +79,7 @@ public class SimulatorTests {
     // Instanciate Simulator and call GetRandomLocationElsewhere with a parameter of OutsideCity.
     // Getting a random location elsewhere if already OutsideCity should throw exception.
     @Test(expected = IllegalArgumentException.class)
-    public final void GetRandomLocationElsewhereFailsFromOutsideCity() {
+    public void GetRandomLocationElsewhereFailsFromOutsideCity() {
         Simulator simulator = new Simulator(generator);
         simulator.GetRandomLocationElsewhere(Driver.Location.OutsideCity);
     }
@@ -90,7 +90,7 @@ public class SimulatorTests {
     // IsLocationValid should return true for newLocation of Library and of Diner but
     // it should return false for all other newLocation values.
     @Test()
-    public final void ValidateNewLocationFromHotel() {
+    public void ValidateNewLocationFromHotel() {
         Simulator simulator = new Simulator(generator);
         assertTrue(simulator.IsLocationValid(Driver.Location.Hotel, Driver.Location.Library));
         assertTrue(simulator.IsLocationValid(Driver.Location.Hotel, Driver.Location.Diner));
@@ -105,7 +105,7 @@ public class SimulatorTests {
     // IsLocationValid should return true for newLocation of Hotel and of OutsideCity but
     // it should return false for all other newLocation values.
     @Test()
-    public final void ValidateNewLocationFromLibrary() {
+    public void ValidateNewLocationFromLibrary() {
         Simulator simulator = new Simulator(generator);
         assertTrue(simulator.IsLocationValid(Driver.Location.Library, Driver.Location.Hotel));
         assertTrue(simulator.IsLocationValid(Driver.Location.Library, Driver.Location.OutsideCity));
@@ -120,7 +120,7 @@ public class SimulatorTests {
     // IsLocationValid should return true for newLocation of Diner and of Library but
     // it should return false for all other newLocation values.
     @Test()
-    public final void ValidateNewLocationFromCoffee() {
+    public void ValidateNewLocationFromCoffee() {
         Simulator simulator = new Simulator(generator);
         assertTrue(simulator.IsLocationValid(Driver.Location.Coffee, Driver.Location.Diner));
         assertTrue(simulator.IsLocationValid(Driver.Location.Coffee, Driver.Location.Library));
@@ -135,7 +135,7 @@ public class SimulatorTests {
     // IsLocationValid should return true for newLocation of Coffee and of OutsideCity but
     // it should return false for all other newLocation values.
     @Test()
-    public final void ValidateNewLocationFromDiner() {
+    public void ValidateNewLocationFromDiner() {
         Simulator simulator = new Simulator(generator);
         assertTrue(simulator.IsLocationValid(Driver.Location.Diner, Driver.Location.Coffee));
         assertTrue(simulator.IsLocationValid(Driver.Location.Diner, Driver.Location.OutsideCity));
@@ -149,7 +149,7 @@ public class SimulatorTests {
     // and every other location in the Location enum as newLocation.
     // IsLocationValid should return false for all other values of newLocation.
     @Test()
-    public final void ValidateNewLocationFromOutsideCity() {
+    public void ValidateNewLocationFromOutsideCity() {
         Simulator simulator = new Simulator(generator);
         assertFalse(simulator.IsLocationValid(Driver.Location.OutsideCity, Driver.Location.Coffee));
         assertFalse(simulator.IsLocationValid(Driver.Location.OutsideCity, Driver.Location.OutsideCity));
@@ -157,19 +157,19 @@ public class SimulatorTests {
         assertFalse(simulator.IsLocationValid(Driver.Location.OutsideCity, Driver.Location.Hotel));
         assertFalse(simulator.IsLocationValid(Driver.Location.OutsideCity, Driver.Location.Diner));
     }
-    
+
     // We don't have control over the built-in Random class so in order to test logic
-    // that depends on Random, we mock it as Number Generator (using MockGeneraotr) so
-    // we can decide the output.
-    // Instantiate MockGenerator with a Desired Value of 1 (Diner) and instantiate Simulator
-    // with this MockGenerator as its parameter. Next, call GetRandomLocationInCity.
+    // that depends on Random, we mock it as Number Generator and stub Random's nextInt method 
+    // using StubGenerator so we can decide the output.
+    // Instantiate StubGenerator with a Desired Value of 1 (Diner) and instantiate Simulator
+    // with this StubGenerator as its parameter. Next, call GetRandomLocationInCity.
     // Diner should be the "random" location returned by GetRandomLocationInCity.
     @Test()
     public void GetRandomReturnsDinerWhenNumberIs1() {
         // assign
-        MockGenerator mockGenerator = new MockGenerator();
-        mockGenerator.DesiredValue = 1;
-        Simulator simulator = new Simulator(mockGenerator);
+        StubGenerator stubGenerator = new StubGenerator();
+        stubGenerator.DesiredValue = 1;
+        Simulator simulator = new Simulator(stubGenerator);
 
         // action
         Driver.Location location = simulator.GetRandomLocationInCity();
@@ -179,17 +179,17 @@ public class SimulatorTests {
     }
 
     // We don't have control over the built-in Random class so in order to test logic
-    // that depends on Random, we mock it as Number Generator (using MockGeneraotr) so
-    // we can decide the output.
-    // Instantiate MockGenerator with a Desired Value of 2 (Library) and instantiate Simulator
-    // with this MockGenerator as its parameter. Next, call GetRandomLocationInCity.
+    // that depends on Random, we mock it as Number Generator and stub Random's nextInt method 
+    // using StubGenerator so we can decide the output.
+    // Instantiate StubGenerator with a Desired Value of 2 (Library) and instantiate Simulator
+    // with this stubGenerator as its parameter. Next, call GetRandomLocationInCity.
     // Library should be the "random" location returned by GetRandomLocationInCity.
     @Test()
     public void GetRandomReturnsCoffeeWhenNumberIs2() {
         // assign
-        MockGenerator mockGenerator = new MockGenerator();
-        mockGenerator.DesiredValue = 2;
-        Simulator simulator = new Simulator(mockGenerator);
+        StubGenerator stubGenerator = new StubGenerator();
+        stubGenerator.DesiredValue = 2;
+        Simulator simulator = new Simulator(stubGenerator);
 
         // action
         Driver.Location location = simulator.GetRandomLocationInCity();
@@ -199,17 +199,17 @@ public class SimulatorTests {
     }
 
     // We don't have control over the built-in Random class so in order to test logic
-    // that depends on Random, we mock it as Number Generator (using MockGeneraotr) so
-    // we can decide the output.
-    // Instantiate MockGenerator with a Desired Value of 3 (Coffee) and instantiate Simulator
-    // with this MockGenerator as its parameter. Next, call GetRandomLocationInCity.
+    // that depends on Random, we mock it as Number Generator and stub Random's nextInt method 
+    // using StubGenerator so we can decide the output.
+    // Instantiate StubGenerator with a Desired Value of 3 (Coffee) and instantiate Simulator
+    // with this stubGenerator as its parameter. Next, call GetRandomLocationInCity.
     // Coffee should be the "random" location returned by GetRandomLocationInCity.
     @Test()
     public void GetRandomReturnsDinerWhenNumberIs3() {
         // assign
-        MockGenerator mockGenerator = new MockGenerator();
-        mockGenerator.DesiredValue = 3;
-        Simulator simulator = new Simulator(mockGenerator);
+        StubGenerator stubGenerator = new StubGenerator();
+        stubGenerator.DesiredValue = 3;
+        Simulator simulator = new Simulator(stubGenerator);
 
         // action
         Driver.Location location = simulator.GetRandomLocationInCity();
@@ -219,17 +219,17 @@ public class SimulatorTests {
     }
 
     // We don't have control over the built-in Random class so in order to test logic
-    // that depends on Random, we mock it as Number Generator (using MockGeneraotr) so
-    // we can decide the output.
-    // Instantiate MockGenerator with a Desired Value of 3 (Coffee) and instantiate Simulator
-    // with this MockGenerator as its parameter. Next, call GetRandomLocationElsewhere with currentLocation of Diner.
+    // that depends on Random, we mock it as Number Generator and stub Random's nextInt method 
+    // using StubGenerator so we can decide the output.
+    // Instantiate StubGenerator with a Desired Value of 3 (Coffee) and instantiate Simulator
+    // with this stubGenerator as its parameter. Next, call GetRandomLocationElsewhere with currentLocation of Diner.
     // Coffee should be the "random" location returned by GetRandomLocationElsewhere based on Diner as currentLocation.
     @Test()
     public void GetRandomLocationElsewhereReturnsCoffeeWhenCurrentLocationIsDinerAndNumberis3() {
         // assign
-        MockGenerator mockGenerator = new MockGenerator();
-        mockGenerator.DesiredValue = 3;  //3=Coffee
-        Simulator simulator = new Simulator(mockGenerator);
+        StubGenerator stubGenerator = new StubGenerator();
+        stubGenerator.DesiredValue = 3;  //3=Coffee
+        Simulator simulator = new Simulator(stubGenerator);
 
         // action
         Driver.Location location = simulator.GetRandomLocationElsewhere(Driver.Location.Diner);
@@ -239,17 +239,17 @@ public class SimulatorTests {
     }
 
     // We don't have control over the built-in Random class so in order to test logic
-    // that depends on Random, we mock it as Number Generator (using MockGeneraotr) so
-    // we can decide the output.
-    // Instantiate MockGenerator with a Desired Value of 1 (Diner) and instantiate Simulator
-    // with this MockGenerator as its parameter. Next, call GetRandomLocationElsewhere with currentLocation of Hotel.
+    // that depends on Random, we mock it as Number Generator and stub Random's nextInt method 
+    // using StubGenerator so we can decide the output.
+    // Instantiate StubGenerator with a Desired Value of 1 (Diner) and instantiate Simulator
+    // with this stubGenerator as its parameter. Next, call GetRandomLocationElsewhere with currentLocation of Hotel.
     // Diner should be the "random" location returned by GetRandomLocationElsewhere based on Hotel as currentLocation.
     @Test()
     public void GetRandomLocationElsewhereReturnsDinerWhenCurrentLocationIsHotelAndNumberis1() {
         // assign
-        MockGenerator mockGenerator = new MockGenerator();
-        mockGenerator.DesiredValue = 1;  //1=Diner
-        Simulator simulator = new Simulator(mockGenerator);
+        StubGenerator stubGenerator = new StubGenerator();
+        stubGenerator.DesiredValue = 1;  //1=Diner
+        Simulator simulator = new Simulator(stubGenerator);
 
         // action
         Driver.Location location = simulator.GetRandomLocationElsewhere(Driver.Location.Hotel);

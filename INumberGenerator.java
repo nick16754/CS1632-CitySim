@@ -1,7 +1,10 @@
+
 /**
+ * CS1635 Deliverable 2
  *
- * @author nick_
+ * @author Nick Taglianetti
  */
 public interface INumberGenerator {
+
     int nextInt(int maxValue);
 }

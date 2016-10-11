@@ -1,3 +1,4 @@
+
 /**
  * CS1635 Deliverable 2
  *
@@ -9,9 +10,7 @@ public class Driver {
     //  Enum to identify all valid locations
     //  Enum is 0-based so that random logic works
     //  Length of this enum is 5
-
-    public enum Location 
-    {
+    public enum Location {
         Hotel,
         Diner,
         Library,
@@ -25,7 +24,7 @@ public class Driver {
         Cleveland,
         Philadelphia,
     }
-    
+
     public int Id;
     public int CupsCoffee;
     public Location CurrentLocation;
@@ -44,34 +43,34 @@ public class Driver {
         this.CurrentCity = null;
     }
 
-    public int getID() {
+    private int getID() {
         return this.Id;
     }
 
-    public int getCupsCoffee() {
+    private int getCupsCoffee() {
         return this.CupsCoffee;
+    }
+
+    private City getCurrentCity() {
+        return this.CurrentCity;
     }
 
     public Location getCurrentLocation() {
         return this.CurrentLocation;
     }
 
-    public City getCurrentCity() {
-        return this.CurrentCity;
-    }
-    
     //  method for drinking coffee
-    public final void DrinkCoffee() {
+    public void DrinkCoffee() {
         this.CupsCoffee++;
     }
 
     //  returns true if current location is not OutsideCity
-    public final boolean IsInsideCity() {
+    public boolean IsInsideCity() {
         return (this.CurrentLocation != Location.OutsideCity);
     }
 
     //  updates location, checking to make sure that it has changed
-    public final void UpdateLocation(Location newLocation) {
+    public void UpdateLocation(Location newLocation) {
         if ((newLocation == this.CurrentLocation)) {
             throw new IllegalArgumentException("newLocation must be different from current location");
         }
@@ -85,7 +84,7 @@ public class Driver {
     }
 
     //  update city if location is outside city
-    public final void UpdateCity(City newCity) {
+    public void UpdateCity(City newCity) {
         if ((this.CurrentLocation != Location.OutsideCity)) {
             throw new IllegalArgumentException("location must be OutsideCity to update city");
         }
@@ -94,4 +93,3 @@ public class Driver {
     }
 
 }
-
